@@ -15,8 +15,10 @@ bool Room::display_room () {
             std::cout << "(" << i+1 << "): " << options[i] << std::endl;
         }
         std::cout << std::endl;
+        return false;
     } else {
         std::cout << "\nThe end.\n";
+        return true;
     }
 }
 
