@@ -21,7 +21,10 @@ class Room {
     
     public:
         Room (std::string description, std::vector<std::string> options);
+        Room ();
         bool display_room ();
+        void set_description (std::string description);
+        void set_options (std::vector<std::string> options);
         void set_adjacents (std::vector<Room*> adjacent_rooms);
         void make_choice (Room ** current_room);
 };
