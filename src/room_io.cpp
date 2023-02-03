@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <set>
 
 std::vector<std::string> tokenize(std::string str) {
     std::vector<std::string> tokens;
@@ -79,4 +80,39 @@ Room * read_adventure(std::string path){
     file.close();
 
     return rooms[0];
+}
+
+
+void write_room_recursive(std::ofstream * file, Room * room, std::set<Room*> * seen_rooms){
+    if (seen_rooms->find(room) == seen_rooms->end()){ // Room has not been seen already
+        // Room title (using just the address cause why not)
+        (*file) << "$" << room << " {" << "\n";
+        // The description of the room
+        (*file) << "    description: \"" << room->get_description() << "\"\n";
+        // Options of the room
+        (*file) << "    options: ";
+        for (auto option: room->get_options()) {
+            (*file) << "\"" << option << "\" ";
+        }
+        (*file) << "\n";
+        // Adjacent rooms
+        (*file) << "    adjacent: ";
+        for (auto adjacent: room->get_adjacents()) {
+            (*file) << adjacent << " ";
+        }
+        (*file) << "\n}\n\n";
+
+        seen_rooms->insert(room);
+
+        for (auto adjacent: room->get_adjacents()) {
+            write_room_recursive(file, adjacent, seen_rooms);
+        }
+    }
+}
+
+void write_adventure(std::string path, Room * starting_room){
+    std::ofstream file(path);
+    std::set<Room*> seen_rooms;
+    write_room_recursive(&file, starting_room, &seen_rooms);
+    file.close();
 }

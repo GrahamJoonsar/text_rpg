@@ -23,8 +23,13 @@ class Room {
         Room (std::string description, std::vector<std::string> options);
         Room ();
         bool display_room ();
+        void make_choice (Room ** current_room);
+
         void set_description (std::string description);
         void set_options (std::vector<std::string> options);
         void set_adjacents (std::vector<Room*> adjacent_rooms);
-        void make_choice (Room ** current_room);
+
+        std::string get_description();
+        std::vector<std::string> get_options();
+        std::vector<Room*> get_adjacents();
 };

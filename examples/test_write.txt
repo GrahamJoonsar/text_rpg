@@ -1,0 +1,18 @@
+$0x871f80 {
+    description: "Room 1"
+    options: "Go to room 2" "Go to room 3" 
+    adjacent: 0x8719e0 0x871af0 
+}
+
+$0x8719e0 {
+    description: "Room 2"
+    options: "Go to room 1" "Go to room 3" 
+    adjacent: 0x871f80 0x871af0 
+}
+
+$0x871af0 {
+    description: "Room 3"
+    options: "Go to room 1" "Go to room 2" 
+    adjacent: 0x871f80 0x8719e0 
+}
+

@@ -74,3 +74,15 @@ void Room::make_choice (Room ** current_room){
 
     *current_room = adjacent_rooms[choice_index];
 }
+
+std::string Room::get_description() {
+    return description;
+}
+
+std::vector<std::string> Room::get_options() {
+    return options;
+}
+
+std::vector<Room*> Room::get_adjacents() {
+    return adjacent_rooms;
+}
