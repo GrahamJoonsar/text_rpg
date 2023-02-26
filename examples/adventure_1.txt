@@ -12,6 +12,6 @@ $room_2 {
 
 $room_3 {
     description: "Room 3" 
-    options: "Go to room 1" "Go to room 2"
-    adjacent: room_1 room_2
+    options:
+    adjacent:
 }
